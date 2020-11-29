@@ -1,12 +1,13 @@
+import os
 import numpy as np
 import pandas as pd
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
-
+from django.conf import settings
 # Read
 def preprocess():
-	df = pd.read_csv('C:\\cbase\\ml_site\\media\\mediafiles\\insurance.csv')
+	df = pd.read_csv(os.path.join(settings.MEDIA_ROOT,'mediafiles','insurance.csv'))
 	df.dropna(inplace=True)
 
 

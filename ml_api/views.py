@@ -5,9 +5,10 @@ from rest_framework import generics
 from django.http import HttpResponse
 from ml_api import data_processing
 import pickle
+import os
 from sklearn.ensemble import GradientBoostingClassifier
 import pandas as pd
-
+from django.conf import settings
 # Create your views here.
 
 
@@ -16,7 +17,7 @@ def HomePage(request):
 
 def accuracy(request):
 	X_test,y_test = data_processing.preprocess()
-	model = pickle.load(open('C:\\cbase\\ml_site\\media\\mediafiles\\gbdt.sav','rb'))
+	model = pickle.load(open(os.path.join(settings.MEDIA_ROOT,'mediafiles','gbdt.sav'),'rb'))
 	score = model.score(X_test, y_test)
 	return HttpResponse('Accuracy is '+ str(int(score*100)) + '% and model is gradient boosted decision tree')
 
