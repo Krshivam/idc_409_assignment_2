@@ -19,7 +19,7 @@ def accuracy(request):
 	X_test,y_test = data_processing.preprocess()
 	model = pickle.load(open(os.path.join(settings.MEDIA_ROOT,'mediafiles','gbdt.sav'),'rb'))
 	score = model.score(X_test, y_test)
-	return HttpResponse('Accuracy is '+ str(int(score*100)) + '% and model is gradient boosted decision tree')
+	return HttpResponse('Accuracy is '+ str(int(score*100)) + '% on your given model')
 
 class UploadedFilesList(generics.ListCreateAPIView):
 	serializer_class = DataSerializer
